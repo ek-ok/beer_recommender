@@ -22,3 +22,4 @@ def coxn_str():
 
 def fetch_data(query):
     engine = create_engine(coxn_str())
+    return pd.read_sql(query, engine)
