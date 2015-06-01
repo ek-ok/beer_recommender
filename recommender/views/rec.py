@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+"""
+Defines the recommend view
+"""
+
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from recommender.models import Recommend
 from recommender import db

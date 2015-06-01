@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+"""
+This defines config as objects
+"""
+
 from recommender import db
 
 

@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+"""
+Defines the main view
+"""
+
 from flask import Blueprint, render_template
 
 main = Blueprint('main', __name__, template_folder='/../templates')
