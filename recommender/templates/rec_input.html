@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="col-md-8">
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <form method="POST" action="">
+
+                <h1 class="cover-heading">What is your new favorite beer?</h1>
+                <p>Enter some of the beers you love!</p>
+                <input type="text" id="beers">
+                <br>
+                <button class="btn" type="submit">Go!</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#beers").tokenInput([
+            {% for beer_id, beer_name in beers %}
+                {id: {{ beer_id }}, name: "{{ beer_name }}"},
+            {% endfor %}
+            ],
+            {theme: "facebook"}
+        );
+    });
+</script>
+
+{% endblock %}
