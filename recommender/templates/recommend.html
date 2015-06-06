@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="col-md-8">
+
+    <form method="get">
+
+        <select id="beers" class="form-control form-control-inline" placeholder="BBID" multiple>
+            {% for beer_id, beer_name in beers %}
+                <option value="{{ beer_name }}">{{ beer_name }}</option>
+            {% endfor %}
+        </select>
+
+    </form>
+
+    <button class="btn" type="submit">Go!</button>
+
+</div>
+
+{% endblock %}

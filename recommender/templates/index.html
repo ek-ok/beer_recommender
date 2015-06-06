@@ -1,18 +1,44 @@
 {% extends "base.html" %}
 {% block body %}
-    <div class="site-wrapper">
-        <div class="site-wrapper-inner">
-            <div class="cover-container">
-                <div class="inner cover">
-                    <h1 class="cover-heading">Organise it all</h1>
-                    <p class="lead">Organise is yet another todo list built with the lovely Flask. What other app could have possibly been built instead?</p>
-                    <p class="lead"> We &hearts; CRUD </p>
-                        <p class="lead">
-                          <a href="{{ url_for('todos.index') }}" class="btn btn-lg btn-default">Organise Now</a>
-                        </p>
-                </div>
+
+<div class="col-md-8">
+    <div class="jumbotron">
+        <div id="carousel-beer" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-beer" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-beer" data-slide-to="1"></li>
+                <li data-target="#carousel-beer" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active"><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/beers3.jpg"></div>
+                <div class="item"><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/beers1.jpg"></div>
+                <div class="item"><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/beers2.jpg"></div>
             </div>
+            <a class="left carousel-control" href="#carousel-beer" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-beer" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+
+        <div class="jumbotron-contents">
+            <h1 class="cover-heading">What is your new favorite beer?</h1>
+
+            <h2>Machine Learning</h2>
+            <p>
+                There are more than 291,913 beers listed on ratebeer.com. Find out a new beer you will like using a
+                recommendation engine based on user-based collaborative-filtering approach.
+            </p>
+
+            <h2>Analysis</h2>
+            <p>
+                Discover more about beers with data-driven approach utilizing 6,899,254 reviews from 362,602 users on
+                ratebeer.com.
+            </p>
         </div>
     </div>
+</div>
 
 {% endblock %}

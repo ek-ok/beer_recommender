@@ -1,41 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
     <head>
-        <title>Organise</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Beer Recommendeder</title>
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Beer Recommendeder">
+	    <meta name="author" content="E.K. Itoku">
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-3.3.4/css/bootstrap.min.css') }}">
+        <script src="{{ url_for('static', filename='bootstrap-3.3.4/js/bootstrap.min.js') }}"></script>
+
+        <!-- Bootflat -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootflat-2.0.4/css/bootflat.min.css') }}">
+        <script src="{{ url_for('static', filename='bootflat-2.0.4/js/icheck.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='bootflat-2.0.4/js/jquery.fs.selecter.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='bootflat-2.0.4/js/jquery.fs.stepper.min.js') }}"></script>
     </head>
     
     <body>
-        
-        <div class="navbar navbar-inverse">
+
+        <div class="navbar navbar-inverse" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('main.index') }}">Organise</a>
+                <a class="navbar-brand" href= "{{ url_for('main.index') }}" >Beer Recommender</a>
             </div>
             <div class="navbar-collapse collapse navbar-inverse-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('todos.index') }}">Todos</a></li>
-                    <li><a href="{{ url_for('main.about') }}">About</a></li>
+                    {% set navigation_bar =
+                        [
+                            ('/recommend',    'recommend',    'Recommend'),
+                            ('/analysis',     'analysis',     'Analysis')
+                        ]
+                    %}
+
+                    {% for href, id, caption in navigation_bar %}
+                        <li {% if id == active_page %} class="active" {% endif %} >
+                            <a href= "{{ href|e }}" > {{ caption|e }} </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
-          </div>
+        </div>
+
         {% for message in get_flashed_messages() %}
             <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{ message }}
             </div>
         {% endfor %}
+
         <div class="container">
-            <div class="page-header">
-                {% block body %}{% endblock %}
-            </div>
-            <footer>
-                <p>&copy; 2014 Marcus Sanatan</p>
-            </footer>
+            {% block body %}{% endblock %}
         </div>
-        <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
     </body>
     
 </html>
