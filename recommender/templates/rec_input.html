@@ -4,13 +4,14 @@
 <div class="col-md-8">
     <div class="jumbotron">
         <div class="jumbotron-contents">
-            <form method="POST" action="">
+            <form method="POST">
 
                 <h1 class="cover-heading">What is your new favorite beer?</h1>
-                <p>Enter some of the beers you love!</p>
-                <input type="text" id="beers">
+                <p>Enter some of the beers you like!</p>
+                <input type="text" class="form-control" id="beers" name="beers" />
                 <br>
-                <button class="btn" type="submit">Go!</button>
+
+                <button class="btn btn-warning" type="submit">Go!</button>
 
             </form>
         </div>
@@ -18,15 +19,21 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#beers").tokenInput([
-            {% for beer_id, beer_name in beers %}
-                {id: {{ beer_id }}, name: "{{ beer_name }}"},
-            {% endfor %}
-            ],
-            {theme: "facebook"}
-        );
-    });
+
+    $('#beers').tokenfield({
+      autocomplete: {
+        source:[
+
+        {% for beer_id, beer_name in beers %}
+            {value: {{ beer_id }}, label: "{{ beer_name }}"},
+        {% endfor %}
+        ],
+
+        delay: 100
+      },
+      showAutocompleteOnFocus: true
+    })
+
 </script>
 
 {% endblock %}

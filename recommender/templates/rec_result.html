@@ -1,12 +1,41 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="col-md-8">
-    <div class="jumbotron">
-        <div class="jumbotron-contents">
-            Results
+<h1 class="page-header">Recommended Beers</h1>
+<p class="lead">Here are the recommended beers for you!</p>
+
+
+{% for beer in beers %}
+<div class="row">
+    <div class="col-md-7">
+        <div class="jumbotron">
+            <div class="jumbotron-contents">
+                <div class="media-left media-middle">
+                <img class="media-object img-rounded" src="http://res.cloudinary.com/ratebeer/image/upload/w_50,c_limit,q_85,d_beer_def.gif/beer_{{ beer['beer_id'] }}.jpg">
+                </div>
+                <div class="media-body">
+                <h2 class="media-heading">{{ beer['rn'] }}. {{ beer['beer_name'] }}</h2>
+
+                <table>
+                    <tr><td><b>Cosign Similarity:</b></td><td>&nbsp;{{ beer['similarity'] }}</td></tr>
+                    <tr><td><b>Brewer:</b></td><td>&nbsp;{{ beer['brewer_name'] }}</td></tr>
+                    <tr><td><b>Country:</b></td><td>&nbsp;{{ beer['country_name'] }}</td></tr>
+                    <tr><td><b>Style:</b></td><td>&nbsp;{{ beer['style_name'] }}</td></tr>
+                    {% if beer['seasonal'] != None %}
+                        <tr><td><b>Seasonal:</b></td><td>&nbsp;{{ beer['seasonal'] }}</td></tr>
+                    {% endif %}
+                    <tr><td><b>Rating:</b></td><td>&nbsp;{{ beer['weighted_avg'] }}</td></tr>
+                    <tr><td><b>Alcohol:</b></td><td>&nbsp;{{ beer['abv'] }}</td></tr>
+                    <tr><td><b>Calories:</b></td><td>&nbsp;{{ beer['est_calories'] }}</td></tr>
+
+
+                </table>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
+{% endfor %}
 
 {% endblock %}

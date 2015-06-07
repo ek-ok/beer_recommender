@@ -11,9 +11,12 @@
 
         <!-- jQuery -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
 
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-3.3.4/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='custom/css/navbar.css') }}">
         <script type="text/javascript" src="{{ url_for('static', filename='bootstrap-3.3.4/js/bootstrap.min.js') }}"></script>
 
         <!-- Bootflat -->
@@ -28,31 +31,45 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jquery-tokeninput-1.6.0/css/token-input-facebook.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jquery-tokeninput-1.6.0/css/token-input-mac.css') }}">
 
+        <!-- Tokenfield -->
+        <script type="text/javascript" src="{{ url_for('static', filename='sliptree-bootstrap-tokenfield-0.12.1/js/bootstrap-tokenfield.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sliptree-bootstrap-tokenfield-0.12.1/css/bootstrap-tokenfield.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sliptree-bootstrap-tokenfield-0.12.1/css/tokenfield-typeahead.css') }}">
+
     </head>
     
     <body>
 
-        <div class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                <a class="navbar-brand" href= "{{ url_for('main.index') }}" >Beer Recommender</a>
-            </div>
-            <div class="navbar-collapse collapse navbar-inverse-collapse">
-                <ul class="nav navbar-nav">
-                    {% set navigation_bar =
-                        [
-                            ('/recommend',    'recommend',    'Recommend'),
-                            ('/analysis',     'analysis',     'Analysis')
-                        ]
-                    %}
-
-                    {% for href, id, caption in navigation_bar %}
-                        <li {% if id == active_page %} class="active" {% endif %} >
-                            <a href= "{{ href|e }}" > {{ caption|e }} </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+    <div class="container-fluid" id="navfluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href= "{{ url_for('main.index') }}">Beer Recommender</a>
         </div>
+        <div class="collapse navbar-collapse" id="navigationbar">
+            <ul class="nav navbar-nav">
+                {% set navigation_bar =
+                    [
+                        ('/recommend',    'recommend',    'Recommend'),
+                        ('/analysis',     'analysis',     'Analysis')
+                    ]
+                %}
+
+                {% for href, id, caption in navigation_bar %}
+                    <li {% if id == active_page %} class="active" {% endif %} >
+                        <a href= "{{ href|e }}" > {{ caption|e }} </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
 
         {% for message in get_flashed_messages() %}
             <div class="alert alert-info">
