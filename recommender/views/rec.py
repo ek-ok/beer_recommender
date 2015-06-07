@@ -5,9 +5,7 @@
 Defines the recommend view
 """
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash
-import pandas as pd
-import numpy as np
+from flask import Blueprint, render_template, request
 from recommender import db
 
 rec = Blueprint('rec', __name__, template_folder='/../templates')
