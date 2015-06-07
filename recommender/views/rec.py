@@ -6,56 +6,73 @@ Defines the recommend view
 """
 
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+import pandas as pd
+import numpy as np
 from recommender import db
 
 rec = Blueprint('rec', __name__, template_folder='/../templates')
 
-@rec.route('/')
+@rec.route('/', methods=['GET', 'POST'])
 def index():
 
-    query = """
-    SELECT
-        beer_id,
-        name
-    FROM rec.beer
-    ORDER BY name LIMIT 10;
-    """
-    print db.fetch_data(query)
+    if request.method == 'GET':
+        query = """
+        SELECT
+            beer_id,
+            beer_name
+        FROM rec.beer;
+        """
+        df = db.fetch_data(query)
+        beers = df.values.tolist()
 
-    return render_template('recommend.html', active_page='recommend')
+        return render_template('rec_input.html', active_page='recommend', beers=beers)
 
+    elif request.method == 'POST':
+        input_beers = request.form['beers']
+        if input_beers:
+            query = """
+            WITH org AS (
+                SELECT beer_id1, beer_id2, distance
+                FROM rec.distance
+                WHERE beer_id1 IN (%s)
+            ),
+            rec AS (
+                SELECT
+                    beer_id2,
+                    SUM(distance) AS total_dist
+                FROM org
+                GROUP BY beer_id2
+            ),
+            rec10 AS (
+                SELECT
+                    ROW_NUMBER() OVER(ORDER BY total_dist DESC) rn,
+                    beer_id2,
+                total_dist
+            FROM rec
+            )
 
-# @rec.route('/add', methods=['POST'])
-# def add_todo():
-#     todo = Recommend(request.form['title'], request.form['description'])
-#     db.session.add(todo)
-#     db.session.commit()
-#     flash('New todo was added')
-#     return redirect(url_for('rec.index'))
-#
-#
-# @rec.route('/todo/<int:t_id>')
-# def show_todo(t_id):
-#     todo = Recommend.query.filter_by(id=t_id).first_or_404()
-#     return render_template('todo.html', todo=todo)
-#
-#
-# @rec.route('/todo/<int:t_id>/edit', methods=['POST'])
-# def edit_todo(t_id):
-#     changed_title = request.form['title']
-#     changed_description = request.form['description']
-#     todo = Recommend.query.filter_by(id=t_id).first_or_404()
-#     todo.title = changed_title
-#     todo.description = changed_description
-#     db.session.commit()
-#     flash('All changes were saved')
-#     return redirect(url_for('rec.index'))
-#
-#
-# @rec.route('/todo/<int:t_id>/delete', methods=['POST'])
-# def delete_todo(t_id):
-#     todo = Recommend.query.filter_by(id=t_id).first_or_404()
-#     db.session.delete(todo)
-#     db.session.commit()
-#     flash('Recommend successfully deleted')
-#     return redirect(url_for('rec.index'))
+            SELECT
+                rn,
+                total_dist AS similarity,
+                beer_id,
+                beer_name,
+                brewer_name,
+                country_name,
+                style_name,
+                seasonal,
+                weighted_avg,
+                abv,
+                est_calories
+            FROM rec.beer
+            INNER JOIN rec10
+                ON rec.beer.beer_id = rec10.beer_id2
+            WHERE rn <= 10
+            ORDER BY rn;
+            """ % input_beers
+
+            df = db.fetch_data(query)
+            output_beers = [df.ix[i].to_dict() for i in df.index]
+
+            return render_template('rec_result.html', beers=output_beers, active_page='recommend')
+        else:
+            return render_template('404.html')

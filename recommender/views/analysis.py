@@ -12,4 +12,4 @@ anal = Blueprint('anal', __name__, template_folder='/../templates')
 
 @anal.route('/')
 def index():
-    return render_template('recommend.html', active_page='analysis')
+    return render_template('analysis.html', active_page='analysis')
