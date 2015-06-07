@@ -14,7 +14,10 @@ from recommender.config import DevConfig
 app = Flask(__name__)
 app.config.from_object(DevConfig)
 
-from recommender.views.rec import rec
 from recommender.views.main import main
-app.register_blueprint(rec, url_prefix='/recommend')
+from recommender.views.rec import rec
+from recommender.views.analysis import anal
+
 app.register_blueprint(main)
+app.register_blueprint(rec, url_prefix='/recommend')
+app.register_blueprint(anal, url_prefix='/analysis')
