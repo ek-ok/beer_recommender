@@ -8,11 +8,16 @@ resister blueprints
 
 
 from flask import Flask
+import os
 from recommender.config import ProdConfig
 from recommender.config import DevConfig
 
 app = Flask(__name__)
-app.config.from_object(DevConfig)
+
+if os.uname()[1] == 'MacBookPro.local':
+    app.config.from_object(DevConfig)
+else:
+    app.config.from_object(ProdConfig)
 
 from recommender.views.main import main
 from recommender.views.rec import rec
