@@ -20,8 +20,7 @@ def index():
             beer_name
         FROM rec.beer;
         """
-        df = db.fetch_data(query)
-        beers = df.values.tolist()
+        beers = db.fetch_data(query)
 
         return render_template('rec_input.html', active_page='recommend', beers=beers)
 
@@ -68,8 +67,21 @@ def index():
             ORDER BY rn;
             """ % input_beers
 
-            df = db.fetch_data(query)
-            output_beers = [df.ix[i].to_dict() for i in df.index]
+            output_beers = []
+            for beer in db.fetch_data(query):
+                tmp_dict = {}
+                tmp_dict['rank'] = beer[0]
+                tmp_dict['similarity'] = beer[1]
+                tmp_dict['beer_id'] = beer[2]
+                tmp_dict['beer_name'] = beer[3]
+                tmp_dict['brewer_name'] = beer[4]
+                tmp_dict['country_name'] = beer[5]
+                tmp_dict['style_name'] = beer[6]
+                tmp_dict['seasonal'] = beer[7]
+                tmp_dict['weighted_avg'] = beer[8]
+                tmp_dict['abv'] = beer[9]
+                tmp_dict['est_calories'] = beer[10]
+                output_beers.append(tmp_dict)
 
             return render_template('rec_result.html', beers=output_beers, active_page='recommend')
         else:
