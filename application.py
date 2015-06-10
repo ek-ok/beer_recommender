@@ -5,7 +5,7 @@
 Start this web app
 """
 
-from recommender import app as application
+from recommender import application
 
 
 if __name__ == '__main__':

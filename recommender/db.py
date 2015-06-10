@@ -5,16 +5,16 @@
 Database connection using pandas
 """
 
-from recommender import app
+from recommender import application
 import pg8000
 
 
 def fetch_data(query):
-    conn = pg8000.connect(host=app.config['DB_SERVER'],
-                          port=app.config['DB_PORT'],
-                          database=app.config['DB_DATABASE'],
-                          user=app.config['DB_USERNAME'],
-                          password=app.config['DB_PASSWORD'])
+    conn = pg8000.connect(host=application.config['DB_SERVER'],
+                          port=application.config['DB_PORT'],
+                          database=application.config['DB_DATABASE'],
+                          user=application.config['DB_USERNAME'],
+                          password=application.config['DB_PASSWORD'])
 
     cursor = conn.cursor()
     cursor.execute(query)
