@@ -69,18 +69,9 @@ def index():
 
             output_beers = []
             for beer in db.fetch_data(query):
-                tmp_dict = {}
-                tmp_dict['rank'] = beer[0]
-                tmp_dict['similarity'] = beer[1]
-                tmp_dict['beer_id'] = beer[2]
-                tmp_dict['beer_name'] = beer[3]
-                tmp_dict['brewer_name'] = beer[4]
-                tmp_dict['country_name'] = beer[5]
-                tmp_dict['style_name'] = beer[6]
-                tmp_dict['seasonal'] = beer[7]
-                tmp_dict['weighted_avg'] = beer[8]
-                tmp_dict['abv'] = beer[9]
-                tmp_dict['est_calories'] = beer[10]
+                tmp_dict = {'rank': beer[0], 'similarity': beer[1], 'beer_id': beer[2], 'beer_name': beer[3],
+                            'brewer_name': beer[4], 'country_name': beer[5], 'style_name': beer[6], 'seasonal': beer[7],
+                            'weighted_avg': beer[8], 'abv': beer[9], 'est_calories': beer[10]}
                 output_beers.append(tmp_dict)
 
             return render_template('rec_result.html', beers=output_beers, active_page='recommend')
