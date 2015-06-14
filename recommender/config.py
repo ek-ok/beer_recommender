@@ -14,10 +14,10 @@ class Config(object):
 
     #DB config
     DB_SERVER = 'aws-postgres01.colxr7rvrp2e.us-east-1.rds.amazonaws.com'
-    DB_USERNAME = 'postgres_user01'
-    DB_PASSWORD = 'a1649100A'
+    DB_USERNAME = 'user'
+    DB_PASSWORD = 'pass'
     DB_DATABASE = 'beer'
-    DB_PORT = 5432
+    DB_port = 5432
 
 
 class ProdConfig(Config):
