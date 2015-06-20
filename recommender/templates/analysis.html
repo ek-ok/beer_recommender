@@ -1,8 +1,393 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="col-md-8">
-    You will see cool analysis soon...
+
+<div class="col-md-12">
+    <div class="jumbotron">
+        <div class="jumbotron-photo"><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/beer-lineup.jpg" /></div>
+        <div class="jumbotron-contents">
+            <h1>What is in the database?</h1>
+            <div class="media-body">
+                <div class="col-md-6">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Data Set</th>
+                            <th>Count</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Beers</td>
+                                <td>319,483</td>
+                            </tr>
+                            <tr>
+                                <td>Brewers</td>
+                                <td>22,395</td>
+                            </tr>
+                            <tr>
+                                <td>Reviews</td>
+                                <td>6,899,254</td>
+                            </tr>
+                            <tr>
+                                <td>Users</td>
+                                <td>362,602</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p>Here is the very higher view of the data. There are 22,395 brewers and they make 291,913 beers, which
+                means on average each brewer makes 14 beers. Also there are 000 reviews written by 60,357 users, which
+                means each user wrote 114 reviews on average!
+            </p>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>Average Review Ratings</h1>
+            <div class="media-body">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Original Scale</th>
+                                <th>Normalized Scale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Overall</strong></td>
+                                <td>13.23 / 20</td>
+                                <td>3.30 / 5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Taste</strong></td>
+                                <td>6.50 / 10</td>
+                                <td>3.25 / 5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Small</strong></td>
+                                <td>6.41 / 10</td>
+                                <td>3.20 / 5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Feel</strong></td>
+                                <td>3.28 / 5</td>
+                                <td>3.28 / 5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Look</strong></td>
+                                <td>3.44 / 5</td>
+                                <td>3.44 / 5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p>
+                Ratings are skewed toward for all the fields. This indicates people tend to write reviews when they
+                like certain beers rather than whey they did not enjoy.
+            </p>
+
+
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>Review Correlation</h1>
+            <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/correration.png" class="img-responsive">
+            <p>
+               This shows that taste, feel, and small ratings are highly correlated. Whereas look is independent.
+                Intuitively This makes seance as a good looking bottle or beer does not necessary mean it tastes good.
+            </p>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>Total and Average Review by Each User </h1>
+            <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/review-score-by-beer.png" class="img-responsive">
+            <p>
+                Each dot represents one user. One user wrote 46,886 reviews over the last 9 years, which means he has
+                been writing 15 reviews per day! Absolutely crazy! He lives in VestJylland, Denmark and his favorite
+                beer style is sour beer.
+            </p>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>Brewer Distribution</h1>
+            <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/brewer-by_country.png" class="img-responsive">
+            <p>
+                As RateBeer is a U.S.-based English website, it makes sense that it has a lot of brewer's info
+                that is located in the U.S.
+            </p>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>User Distribution</h1>
+            <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/user-by-country.png" class="img-responsive">
+            <p>
+                This pie chart is similar to brewer's pie chart. This is indicating that American users like to
+                write their reviews for American beers and British for British beers. It is interesting that
+                this website only has 9.72% of German users. Maybe they have their own German beer review sites.
+            </p>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>Review Count by Styles</h1>
+            <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/review-count-by-styles.png" class="img-responsive">
+            <p>
+                IPA got far more reviews than other other styles.
+            </p>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>Can we classify Ale or Lager Beers Based on Reviews?</h1>
+            <p>
+                All the beers can be classified as Ale or Lager beers. Let's see if we can classify them with machine
+                learning!
+            </p>
+            <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/beer-styles.jpg" class="img-responsive" width="400">
+
+            <h5>1). Tokenize and cleanup Text</h5>
+            <p>
+                Tokenize a sentence, remove non-alphabet tokens, eliminate tokens that are less than 3 word,
+                and then stem them.
+            </p>
+
+            <h5>2). Vectorize Tokens</h5>
+            <p>
+                Using Tf-idf Vectorizer and bigram to convert user reviews into a matrix.<br>
+                Ignore the words that appear more than 90% and less than 1%.
+            </p>
+
+
+            <h5>3). Train and Tune Random Forest</h5>
+            <p>
+                Divide the data into training and testing sets. Train Random Forest model with gini impurity. Then tune
+                the hyperparameters.
+            </p>
+            <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/decision-tree-all-zoom.png" class="img-responsive" class="img-responsive" width="700">
+
+            <div class="media-body">
+                <h5>4). Evaluate the Model</h5>
+                <div class="col-md-8">
+                    <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/roc.png" class="img-responsive">
+                    <p>
+                        Accuracy 77.12%<br>
+                        Precision 78.31%
+                    </p>
+                    <p>
+                        ROC is not too bad. Citrus is a good indication of ale beer (especially Anglo-American Ales) for example.
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Importance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>citrus</strong></td>
+                                <td>0.014004</td>
+                            </tr>
+                            <tr>
+                                <td><strong>pour</strong></td>
+                                <td>0.011374</td>
+                            </tr>
+                            <tr>
+                                <td><strong>head</strong></td>
+                                <td>0.010743</td>
+                            </tr>
+                            <tr>
+                                <td><strong>orang</strong></td>
+                                <td>0.010736</td>
+                            </tr>
+                            <tr>
+                                <td><strong>aroma</strong></td>
+                                <td>0.009715</td>
+                            </tr>
+                            <tr>
+                                <td><strong>light</strong></td>
+                                <td>0.009593</td>
+                            </tr>
+                            <tr>
+                                <td><strong>malt</strong></td>
+                                <td>0.009542</td>
+                            </tr>
+                            <tr>
+                                <td><strong>tast</strong></td>
+                                <td>0.009404</td>
+                            </tr>
+                            <tr>
+                                <td><strong>sweet</strong></td>
+                                <td>0.008703</td>
+                            </tr>
+                            <tr>
+                                <td><strong>flavor</strong></td>
+                                <td>0.008309</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="jumbotron-contents">
+            <h1>Review Topic Analysis</h1>
+            <P>Let's identify the key words that are ued for certain review topics. </P>
+
+            <h5>1). Identify the Topics</h5>
+            <p>
+                As below, all the average ratings are
+                about the same. Thus, if one field is significantly higher or lower than others, it is likely that this
+                particular review is about that field, because he or she was impressed by it. For example, if taste =
+                5.0, palate = 2.7, aroma = 2.8 and appearance = 3.0, it is likely that the review is about taste.
+            </p>
+            <div class="media-body">
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th><strong>Taste</strong></th>
+                                <th><strong>Aroma</strong></th>
+                                <th><strong>Palate</strong></th>
+                                <th><strong>Appearance</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Score</strong></td>
+                                <td>3.25</td>
+                                <td>3.20</td>
+                                <td>3.28</td>
+                                <td>3.44</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h5>3). Part-of-Speech Clean Up</h5>
+                <p>
+                    Only select these below tags to remove noise. Complete list of POS tag can be found on
+                    <a href="http://www.ling.upenn.edu/courses/Fall_2014/ling001/penn_treebank_pos.html" target="_blank">
+                        University of Pennsylvania, Treebank Project.</a> Then select dominant words based on the tf-idf
+                    scores.
+                </p>
+                <div class="media-body">
+                    <div class="col-md-8">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><strong>POS Tag</strong></th>
+                                    <th><strong>Description</strong></th>
+                                    <th><strong>Example</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>NN</td>
+                                    <td>Noun, singular or mass</td>
+                                    <td>sweet</td>
+                                </tr>
+                                <tr>
+                                    <td>JJ</td>
+                                    <td>Adjective</td>
+                                    <td>sweet</td>
+                                </tr>
+                                <tr>
+                                    <td>JJR</td>
+                                    <td>Adjective, comparative</td>
+                                    <td>better</td>
+                                </tr>
+                                <tr>
+                                    <td>RB</td>
+                                    <td>Adverb</td>
+                                    <td>long</td>
+                                </tr>
+                                <tr>
+                                    <td>PRP$</td>
+                                    <td>Possessive pronoun</td>
+                                    <td>sour</td>
+                                </tr>
+                                <tr>
+                                    <td>NNS</td>
+                                    <td>Noun, plural</td>
+                                    <td>banana</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="media-body">
+                <h5>4). Create Word Clouds for Topic Key Words</h5>
+                <div class="col-md-9">
+                    <div>
+                        <center>
+                        <h4>Look</h4>
+                            </center>
+                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_look.png" class="img-responsive">
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div>
+                        <center>
+                        <h4>Feel</h4>
+                            </center>
+                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_feel.png" class="img-responsive">
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div>
+                        <center>
+                        <h4>Smell</h4>
+                            </center>
+                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_smell.png" class="img-responsive">
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div>
+                        <center>
+                        <h4>Taste</h4>
+                            </center>
+                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_taste.png" class="img-responsive">
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
 </div>
 
 {% endblock %}
