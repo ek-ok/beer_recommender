@@ -16,7 +16,4 @@ def index():
 
 @main.route('/about')
 def about():
-    import os
-    envs = os.environ
-
-    return render_template('about.html', envs=envs)
+    return render_template('about.html')
