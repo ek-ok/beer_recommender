@@ -14,11 +14,11 @@ class Config(object):
     PORT = 8080
 
     #DB config
-    DB_SERVER = os.environ.get('DB_SERVER')
-    DB_USERNAME = os.environ.get('DB_USERNAME')
-    DB_PASSWORD = os.environ.get('DB_PASSWORD')
-    DB_DATABASE = os.environ.get('DB_DATABASE')
-    DB_PORT = os.environ.get('DB_PORT')
+    DB_SERVER = os.environ['DB_SERVER']
+    DB_USERNAME = os.environ['DB_USERNAME']
+    DB_PASSWORD = os.environ['DB_PASSWORD']
+    DB_DATABASE = os.environ['DB_DATABASE']
+    DB_PORT = os.environ['DB_PORT']
 
 
 class ProdConfig(Config):
