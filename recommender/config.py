@@ -5,6 +5,7 @@
 This defines config as objects
 """
 
+import os
 
 class Config(object):
     #Flask config
@@ -13,11 +14,11 @@ class Config(object):
     PORT = 8080
 
     #DB config
-    DB_SERVER = 'host'
-    DB_USERNAME = 'user'
-    DB_PASSWORD = 'pass'
-    DB_DATABASE = 'beer'
-    DB_PORT = 5432
+    DB_SERVER = os.environ.get('DB_SERVER')
+    DB_USERNAME = os.environ.get('DB_USERNAME')
+    DB_PASSWORD = os.environ.get('DB_PASSWORD')
+    DB_DATABASE = os.environ.get('DB_DATABASE')
+    DB_PORT = os.environ.get('DB_PORT')
 
 
 class ProdConfig(Config):
