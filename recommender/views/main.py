@@ -17,8 +17,6 @@ def index():
 @main.route('/about')
 def about():
     import os
-    import application
     envs = os.environ
-    server = application.config['DB_SERVER']
 
-    return render_template('about.html', envs=envs, server=server)
+    return render_template('about.html', envs=envs)
