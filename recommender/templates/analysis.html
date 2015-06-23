@@ -38,9 +38,8 @@
                     </table>
                 </div>
             </div>
-            <p>Here is the very higher view of the data. There are 22,395 brewers and they make 291,913 beers, which
-                means on average each brewer makes 14 beers. Also there are 000 reviews written by 60,357 users, which
-                means each user wrote 114 reviews on average!
+            <p>Here is the overview of the data. There are 22,395 brewers and they make 291,913 beers, which
+                means on average each brewer makes 14 beers.
             </p>
         </div>
     </div>
@@ -89,8 +88,9 @@
                 </div>
             </div>
             <p>
-                Ratings are skewed toward for all the fields. This indicates people tend to write reviews when they
-                like certain beers rather than whey they did not enjoy.
+                Rating fields were normalized to 5 scale, which revealed that they were skewed toward high for all the
+                fields. This indicates people tend to write reviews when they enjoyed the beers rather than when
+                they did not.
             </p>
 
 
@@ -102,20 +102,21 @@
             <h1>Review Correlation</h1>
             <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/correration.png" class="img-responsive">
             <p>
-               This shows that taste, feel, and small ratings are highly correlated. Whereas look is independent.
-                Intuitively This makes seance as a good looking bottle or beer does not necessary mean it tastes good.
+               This correlation matrix shows that taste, feel, and small ratings are highly correlated. Whereas look is
+                independent. Intuitively this makes seance as a good looking bottle or beer does not necessary mean
+                it tastes good.
             </p>
         </div>
     </div>
 
     <div class="jumbotron">
         <div class="jumbotron-contents">
-            <h1>Total and Average Review by Each User </h1>
+            <h1>Rating Score and Review Count by Users</h1>
             <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/review-score-by-beer.png" class="img-responsive">
             <p>
-                Each dot represents one user. One user wrote 46,886 reviews over the last 9 years, which means he has
+                Each dot represents an user. One user wrote 46,886 reviews over the last 9 years, which means he has
                 been writing 15 reviews per day! Absolutely crazy! He lives in VestJylland, Denmark and his favorite
-                beer style is sour beer.
+                beer style is sour beer. Outliers sometimes tell an interesting sorry.
             </p>
         </div>
     </div>
@@ -125,8 +126,8 @@
             <h1>Brewer Distribution</h1>
             <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/brewer-by_country.png" class="img-responsive">
             <p>
-                As RateBeer is a U.S.-based English website, it makes sense that it has a lot of brewer's info
-                that is located in the U.S.
+                As the data was scraped from an American review website, it makes sense that it has a lot of
+                American brewer's info.
             </p>
         </div>
     </div>
@@ -137,7 +138,7 @@
             <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/user-by-country.png" class="img-responsive">
             <p>
                 This pie chart is similar to brewer's pie chart. This is indicating that American users like to
-                write their reviews for American beers and British for British beers. It is interesting that
+                write their reviews for American beers. It is interesting that
                 this website only has 9.72% of German users. Maybe they have their own German beer review sites.
             </p>
         </div>
@@ -148,7 +149,7 @@
             <h1>Review Count by Styles</h1>
             <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/review-count-by-styles.png" class="img-responsive">
             <p>
-                IPA got far more reviews than other other styles.
+                IPA got far more reviews than other other styles. All of the top 10 beers are ale bitter beers.
             </p>
         </div>
     </div>
@@ -164,7 +165,7 @@
 
             <h5>1). Tokenize and cleanup Text</h5>
             <p>
-                Tokenize a sentence, remove non-alphabet tokens, eliminate tokens that are less than 3 word,
+                Tokenize sentences, remove non-alphabet tokens, eliminate tokens that are less than 3 word,
                 and then stem them.
             </p>
 
@@ -270,9 +271,9 @@
                             <tr>
                                 <th></th>
                                 <th><strong>Taste</strong></th>
-                                <th><strong>Aroma</strong></th>
-                                <th><strong>Palate</strong></th>
-                                <th><strong>Appearance</strong></th>
+                                <th><strong>Smell</strong></th>
+                                <th><strong>Feel</strong></th>
+                                <th><strong>Look</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -293,8 +294,8 @@
                 <p>
                     Only select these below tags to remove noise. Complete list of POS tag can be found on
                     <a href="http://www.ling.upenn.edu/courses/Fall_2014/ling001/penn_treebank_pos.html" target="_blank">
-                        University of Pennsylvania, Treebank Project.</a> Then select dominant words based on the tf-idf
-                    scores.
+                        University of Pennsylvania, Treebank Project.
+                    </a>
                 </p>
                 <div class="media-body">
                     <div class="col-md-8">
@@ -344,42 +345,239 @@
             </div>
 
             <div class="media-body">
-                <h5>4). Create Word Clouds for Topic Key Words</h5>
+                <h5>4). Identify Topic Key Words</h5>
+                <p>
+                    Some words appear on top across different topics. Remove these duplicate by identifying topic
+                    relevance based on the tf-idf scores. Here are the top 10 key words!
+                </p>
+                <row><div class="col-md-4 col-md-offset-4"><h4>Look</h4></div></row>
                 <div class="col-md-9">
-                    <div>
-                        <center>
-                        <h4>Look</h4>
-                            </center>
-                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_look.png" class="img-responsive">
-                    </div>
+                    <div><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_look.png" class="img-responsive"></div>
+                </div>
+                <div class="col-md-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Tf-idf score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>head</td>
+                                <td>783.187095</td>
+                            </tr>
+                            <tr>
+                                <td>malt</td>
+                                <td>766.275567</td>
+                            </tr>
+                            <tr>
+                                <td>sweet</td>
+                                <td>755.314652</td>
+                            </tr>
+                            <tr>
+                                <td>pour</td>
+                                <td>693.484160</td>
+                            </tr>
+                            <tr>
+                                <td>bottl</td>
+                                <td>581.899112</td>
+                            </tr>
+                            <tr>
+                                <td>dark</td>
+                                <td>559.481745</td>
+                            </tr>
+                            <tr>
+                                <td>bodi</td>
+                                <td>539.841718</td>
+                            </tr>
+                            <tr>
+                                <td>color</td>
+                                <td>502.866227</td>
+                            </tr>
+                            <tr>
+                                <td>chocol</td>
+                                <td>467.462480</td>
+                            </tr>
+                            <tr>
+                                <td>brown</td>
+                                <td>465.064070</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
+                <row><div class="col-md-4 col-md-offset-4"><h4>Feel</h4></div></row>
                 <div class="col-md-9">
-                    <div>
-                        <center>
-                        <h4>Feel</h4>
-                            </center>
-                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_feel.png" class="img-responsive">
-                    </div>
+                    <div><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_feel.png" class="img-responsive"></div>
+                </div>
+                <div class="col-md-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Tf-idf score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>light</td>
+                                <td>832.947515</td>
+                            </tr>
+                            <tr>
+                                <td>hop</td>
+                                <td>732.017182</td>
+                            </tr>
+                            <tr>
+                                <td>finish</td>
+                                <td>570.970481</td>
+                            </tr>
+                            <tr>
+                                <td>smooth</td>
+                                <td>396.933870</td>
+                            </tr>
+                            <tr>
+                                <td>carbon</td>
+                                <td>348.283499</td>
+                            </tr>
+                            <tr>
+                                <td>realli</td>
+                                <td>321.546801</td>
+                            </tr>
+                            <tr>
+                                <td>golden</td>
+                                <td>299.530312</td>
+                            </tr>
+                            <tr>
+                                <td>creami</td>
+                                <td>287.018680</td>
+                            </tr>
+                            <tr>
+                                <td>mild</td>
+                                <td>280.252075</td>
+                            </tr>
+                            <tr>
+                                <td>yellow</td>
+                                <td>273.949981</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
+                <row><div class="col-md-4 col-md-offset-4"><h4>Smell</h4></div></row>
                 <div class="col-md-9">
-                    <div>
-                        <center>
-                        <h4>Smell</h4>
-                            </center>
-                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_smell.png" class="img-responsive">
-                    </div>
+                    <div><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_smell.png" class="img-responsive"></div>
+                </div>
+                <div class="col-md-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Tf-idf score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>aroma</td>
+                                <td>867.741948</td>
+                            </tr>
+                            <tr>
+                                <td>tast</td>
+                                <td>778.756008</td>
+                            </tr>
+                            <tr>
+                                <td>bitter</td>
+                                <td>597.112294</td>
+                            </tr>
+                            <tr>
+                                <td>littl</td>
+                                <td>452.607806</td>
+                            </tr>
+                            <tr>
+                                <td>bit</td>
+                                <td>449.144179</td>
+                            </tr>
+                            <tr>
+                                <td>smell</td>
+                                <td>437.344070</td>
+                            </tr>
+                            <tr>
+                                <td>nose</td>
+                                <td>409.462745</td>
+                            </tr>
+                            <tr>
+                                <td>citrus</td>
+                                <td>392.528563</td>
+                            </tr>
+                            <tr>
+                                <td>orang</td>
+                                <td>363.023911</td>
+                            </tr>
+                            <tr>
+                                <td>fruit</td>
+                                <td>361.723525</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
+                <row><div class="col-md-4 col-md-offset-4"><h4>Taste</h4></div></row>
                 <div class="col-md-9">
-                    <div>
-                        <center>
-                        <h4>Taste</h4>
-                            </center>
-                        <img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_taste.png" class="img-responsive">
-                    </div>
+                    <div><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/wc_taste.png" class="img-responsive"></div>
                 </div>
+                <div class="col-md-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Tf-idf score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>flavor</td>
+                                <td>800.687259</td>
+                            </tr>
+                            <tr>
+                                <td>veri</td>
+                                <td>791.347493</td>
+                            </tr>
+                            <tr>
+                                <td>nice</td>
+                                <td>661.631480</td>
+                            </tr>
+                            <tr>
+                                <td>good</td>
+                                <td>614.611407</td>
+                            </tr>
+                            <tr>
+                                <td>great</td>
+                                <td>353.480593</td>
+                            </tr>
+                            <tr>
+                                <td>drink</td>
+                                <td>317.321937</td>
+                            </tr>
+                            <tr>
+                                <td>hoppi</td>
+                                <td>292.548509</td>
+                            </tr>
+                            <tr>
+                                <td>balanc</td>
+                                <td>291.690900</td>
+                            </tr>
+                            <tr>
+                                <td>ale</td>
+                                <td>267.650090</td>
+                            </tr>
+                            <tr>
+                                <td>ipa</td>
+                                <td>253.453547</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
