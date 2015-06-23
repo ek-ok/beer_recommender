@@ -5,32 +5,35 @@
 <p class="lead">Here are the recommended beers for you!</p>
 
 {% for beer in beers %}
-<div class="row">
-    <div class="col-md-7">
-        <div class="jumbotron">
-            <div class="jumbotron-contents">
-                <div class="media-left media-middle">
-                    <img class="media-object img-rounded" src="http://res.cloudinary.com/ratebeer/image/upload/w_50,c_limit,q_85,d_beer_def.gif/beer_{{ beer['beer_id'] }}.jpg">
-                </div>
-                <div class="media-body">
-                    <h2 class="media-heading">{{ beer['rank'] }}. {{ beer['beer_name'] }}</h2>
-                    <table>
-                        <tr><td><strong>Cosign Similarity:</strong></td><td>&nbsp;{{ beer['similarity'] }}</td></tr>
-                        <tr><td><strong>Brewer:</strong></td><td>&nbsp;{{ beer['brewer_name'] }}</td></tr>
-                        <tr><td><strong>Country:</strong></td><td>&nbsp;{{ beer['country_name'] }}</td></tr>
-                        <tr><td><strong>Style:</strong></td><td>&nbsp;{{ beer['style_name'] }}</td></tr>
-                        {% if beer['seasonal'] != None %}
-                            <tr><td><strong>Seasonal:</strong></td><td>&nbsp;{{ beer['seasonal'] }}</td></tr>
-                        {% endif %}
-                        <tr><td><strong>Rating:</strong></td><td>&nbsp;{{ beer['weighted_avg'] }}</td></tr>
-                        <tr><td><strong>Alcohol:</strong></td><td>&nbsp;{{ beer['abv'] }}</td></tr>
-                        <tr><td><strong>Calories:</strong></td><td>&nbsp;{{ beer['est_calories'] }}</td></tr>
-                    </table>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="jumbotron">
+                <div class="jumbotron-contents">
+                    <div class="media-left media-middle">
+                        <img class="media-object img-rounded" src="http://res.cloudinary.com/ratebeer/image/upload/w_50,c_limit,q_85,d_beer_def.gif/beer_{{ beer['beer_id'] }}.jpg">
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{ beer['rank'] }}. {{ beer['beer_name'] }}</h2>
+                        <table>
+                            <tr><td><strong>Cosign Similarity:</strong></td><td>&nbsp;{{ beer['similarity'] }}</td></tr>
+                            <tr><td><strong>Brewer:</strong></td><td>&nbsp;{{ beer['brewer_name'] }}</td></tr>
+                            <tr><td><strong>Country:</strong></td><td>&nbsp;{{ beer['country_name'] }}</td></tr>
+                            <tr><td><strong>Style:</strong></td><td>&nbsp;{{ beer['style_name'] }}</td></tr>
+                            {% if beer['seasonal'] != None %}
+                                <tr><td><strong>Seasonal:</strong></td><td>&nbsp;{{ beer['seasonal'] }}</td></tr>
+                            {% endif %}
+                            <tr><td><strong>Rating:</strong></td><td>&nbsp;{{ beer['weighted_avg'] }}</td></tr>
+                            <tr><td><strong>Alcohol:</strong></td><td>&nbsp;{{ beer['abv'] }}</td></tr>
+                            <tr><td><strong>Calories:</strong></td><td>&nbsp;{{ beer['est_calories'] }}</td></tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endfor %}
+
+<form action="/analysis"><button class="btn btn-warning" type="submit">View Beer Analysis!</button></form>
+<br><br>
 
 {% endblock %}
