@@ -1,6 +1,6 @@
 #Beer Recommender
 
-The application is running here [http://recommend.beer](http://www.recommend.beer/)
+This application is running here [http://recommend.beer](http://www.recommend.beer/)
 
 #What is your new favorite beer?
 
@@ -12,4 +12,3 @@ temporary stored into MongoDB, because the data was unstructured. For example, s
 fields and they were unknown until they were scraped. At the end, in the NoSQL, there were 6,899,254 reviews, 319,483 
 beer data, and 362,602 user info. Finally, after significant data mungging, these raw data was migrated to PostgreSQL 
 from MongoDB for machine learning and analysis purposes.
-
