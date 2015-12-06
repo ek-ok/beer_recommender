@@ -33,7 +33,18 @@
     </div>
 {% endfor %}
 
-<form action="/analysis"><button class="btn btn-warning" type="submit">View Beer Analysis!</button></form>
+<div class="alert alert-warning" role="alert">
+    <h4 class="page-header">How does this recommendation engine work?</h4>
+    This beer recommendation engine is built on collaborative-filtering approach. Using the reviews scraped from a
+    review site, a review-rating matrix was created. The matrix had all the beers as rows and users as columns. It
+    contained user review ratings from 1 to 5. Of course users did not review all the beers and there were a lot of
+    nulls, which were filled with 0. Since this matrix was very sparse, cosine similarity was suitable to calculate
+    similarities between beers and the pre-populated similarity matrix was transferred to a PostgreSQL. Based on the
+    user inputs, this app searches the closest 10 beers from the matrix.
+</div>
+
+<br><br>
+<form action="/analysis"><button class="btn btn-warning btn-lg" type="submit">View Beer Analysis!</button></form>
 <br><br>
 
 {% endblock %}
