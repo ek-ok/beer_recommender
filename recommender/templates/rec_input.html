@@ -6,14 +6,31 @@
         <div class="jumbotron-contents">
             <form method="POST">
 
-                <h1 class="cover-heading">What is your new favorite beer?</h1>
+                <h1 class="cover-heading">Find out your favorite beers!</h1>
+                <h5 class="cover-heading">What are the three beers you like?</h5>
                 <p class="lead">
-                    Enter a few beers you like. Then, this machine learning app will show you top 10 recommendations
+                    Enter three beers you like. Then, this machine learning app will show you top 10 recommendations
                     out of 319,483 beers in the database!
                 </p>
-                <input type="text" class="form-control" id="beers" name="beers" />
 
-                <br>
+                <div class="form-group">
+                    <label>1st Beer</label>
+                    <input type="text" class="form-control beer-name" id="beer1-name" name="beer1-name" />
+                    <input type="hidden" id="beer1-id" name="beer1-id" />
+                </div>
+
+                <div class="form-group">
+                    <label>2nd Beer</label>
+                    <input type="text" class="form-control beer-name" id="beer2-name" name="beer2-name" />
+                    <input type="hidden" id="beer2-id" name="beer2-id" />
+                </div>
+
+                <div class="form-group">
+                    <label>3rd Beer</label>
+                    <input type="text" class="form-control beer-name" id="beer3-name" name="beer3-name" />
+                    <input type="hidden" id="beer3-id" name="beer3-id" />
+                </div>
+
                 <button class="btn btn-warning btn-lg" type="submit">Recommend!</button>
 
             </form>
@@ -21,21 +38,41 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
 
-    $('#beers').tokenfield({
-      autocomplete: {
-        source:[
-
+     beers = [
         {% for beer_id, beer_name in beers %}
             {value: {{ beer_id }}, label: "{{ beer_name }}"},
         {% endfor %}
-        ],
+    ];
 
-        delay: 1000
-      },
-      showAutocompleteOnFocus: false
-    })
+    $(function() {
+        $(".beer-name").autocomplete({
+            source: beers,
+            minLength: 3,
+            delay: 0,
+            focus: function(event, ui) {
+                event.preventDefault();
+                $(this).val(ui.item.label);
+            },
+            select: function(event, ui) {
+                event.preventDefault();
+                $(this).val(ui.item.label);
+
+                var tag = $(this).attr('name').slice(0, 6)
+                $("#" + tag + "id").val(ui.item.value);
+            },
+            change: function (event, ui) {
+            if(!ui.item){
+                $(this).val("");
+
+                var tag = $(this).attr('name').slice(0, 6)
+                $("#" + tag + "id").val("");
+            }
+        }
+        });
+    });
 
 </script>
 

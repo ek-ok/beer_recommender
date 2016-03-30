@@ -3,7 +3,6 @@
 
     <head>
         <title>Beer Recommender</title>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Beer Recommender">
@@ -25,47 +24,41 @@
         <script type="text/javascript" src="{{ url_for('static', filename='bootflat-2.0.4/js/icheck.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='bootflat-2.0.4/js/jquery.fs.selecter.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='bootflat-2.0.4/js/jquery.fs.stepper.min.js') }}"></script>
-
-        <!-- Tokenfield -->
-        <script type="text/javascript" src="{{ url_for('static', filename='sliptree-bootstrap-tokenfield-0.12.1/js/bootstrap-tokenfield.js') }}"></script>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sliptree-bootstrap-tokenfield-0.12.1/css/bootstrap-tokenfield.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sliptree-bootstrap-tokenfield-0.12.1/css/tokenfield-typeahead.css') }}">
-
     </head>
     
     <body>
 
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
+        <nav class="navbar navbar-default navbar-inverse" role="navigation">
 
-    <div class="navbar-brand navbar-left"><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/favicon.ico"></div>
-    <div class="container-fluid" id="navfluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href= "{{ url_for('main.index') }}">Beer Recommender</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navigationbar">
-            <ul class="nav navbar-nav">
-                {% set navigation_bar =
-                    [
-                        ('/recommend',    'recommend',    'Recommend'),
-                        ('/analysis',     'analysis',     'Analysis')
-                    ]
-                %}
+            <div class="navbar-brand navbar-left"><img src="https://s3-us-west-2.amazonaws.com/beerrec/img/favicon.ico"></div>
+            <div class="container-fluid" id="navfluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href= "{{ url_for('main.index') }}">Beer Recommender</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navigationbar">
+                    <ul class="nav navbar-nav">
+                        {% set navigation_bar =
+                            [
+                                ('/recommend',    'recommend',    'Recommend'),
+                                ('/analysis',     'analysis',     'Analysis')
+                            ]
+                        %}
 
-                {% for href, id, caption in navigation_bar %}
-                    <li {% if id == active_page %} class="active" {% endif %} >
-                        <a href= "{{ href|e }}" > {{ caption|e }} </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+                        {% for href, id, caption in navigation_bar %}
+                            <li {% if id == active_page %} class="active" {% endif %} >
+                                <a href= "{{ href|e }}" > {{ caption|e }} </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
 
 
         {% for message in get_flashed_messages() %}

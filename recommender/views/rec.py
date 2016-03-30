@@ -12,7 +12,6 @@ rec = Blueprint('rec', __name__, template_folder='/../templates')
 
 @rec.route('/', methods=['GET', 'POST'])
 def index():
-
     if request.method == 'GET':
         query = """
         SELECT
@@ -21,12 +20,14 @@ def index():
         FROM rec.beer;
         """
         beers = db.fetch_data(query)
-
         return render_template('rec_input.html', active_page='recommend', beers=beers)
 
     elif request.method == 'POST':
-        input_beers = request.form['beers']
-        if input_beers:
+
+        if len(request.form['beer1-id']) * len(request.form['beer2-id']) * len(request.form['beer3-id']) == 0:
+            return render_template('404.html')
+        else:
+            input_beers = '%s,%s,%s' % (request.form['beer1-id'], request.form['beer2-id'], request.form['beer3-id'])
             query = """
             WITH org AS (
                 SELECT beer_id1, beer_id2, distance
@@ -75,5 +76,5 @@ def index():
                 output_beers.append(tmp_dict)
 
             return render_template('rec_result.html', beers=output_beers, active_page='recommend')
-        else:
-            return render_template('404.html')
+
+
