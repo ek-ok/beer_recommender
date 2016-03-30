@@ -35,11 +35,11 @@
 
 <div class="alert alert-warning" role="alert">
     <h4 class="page-header">How does this recommendation engine work?</h4>
-    This beer recommendation engine is built on collaborative-filtering approach. With the reviews scraped from a
-    review site, a review-rating matrix was created that contained 319,483 beers as rows and 362,602 usernames as
+    This beer recommendation engine is built on collaborative-filtering approach. With the data scraped from a
+    beer review site, a review-rating matrix was created that contained 319,483 beers as rows and 362,602 usernames as
     columns, and the matrix values were user ratings from 1 to 5. Of course noe users reviewed all the 319,483 beers
-    and there were a lot of nulls, which were filled with 0. Since this matrix was very sparse, cosine similarity was used to
-    calculate similarities between beers. Then this pre-computed similarity matrix was transferred to a PostgreSQL.
+    and there were a lot of nulls, which were filled with 0. Since this matrix was very sparse, cosine similarity was
+    used to calculate similarities between beers. Then this pre-computed similarity matrix was stored in PostgreSQL.
     Finally, based on the user inputs, this app searches the closest 10 beers from the database.
 </div>
 
