@@ -1,8 +1,8 @@
-#Beer Recommender
+# Beer Recommender
 
 This application is running here [http://recommend.beer](http://www.recommend.beer/)
 
-#What is your new favorite beer?
+# What is your new favorite beer?
 
 I always wonder what beer to get at a bar. There are way too many choices for a casual beer drinker and I usually know 
 just a few beers out of the dozens of choices there. Thus, I decided to build a beer recommendation engine based on 
